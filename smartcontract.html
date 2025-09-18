@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>블록체인 스마트 계약 시뮬레이터</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Crypto-JS for SHA256 Hashing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <style>
+        /* 기본 폰트 및 다크 모드 배경 설정 */
+        body {
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            background-color: #111827; /* 다크 모드 배경 */
+            color: #d1d5db; /* 기본 텍스트 색상 */
+        }
+        /* 블록 유효성 상태에 따른 애니메이션 */
+        .block-valid {
+            border-color: #22c55e;
+            box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+        }
+        .block-invalid {
+            border-color: #ef4444;
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.7);
+            animation: shake 0.5s ease-in-out;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        /* 입력 필드 스타일 */
+        .form-input {
+            background-color: #374151;
+            border-color: #4b5563;
+            color: #e5e7eb;
+        }
+        .form-input:focus {
+            ring-color: #3b82f6;
+            border-color: #3b82f6;
+        }
+        /* 스크롤바 스타일링 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1f2937;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4b5563;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6b7280;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <div class="max-w-7xl mx-auto">
+        <!-- 헤더 -->
+        <header class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-2">블록체인 스마트 계약 시뮬레이터</h1>
+            <p class="text-lg text-gray-400">블록체인의 원리를 직접 체험해보세요.</p>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- 좌측: 스마트 계약 및 제어판 -->
+            <div class="lg:col-span-1 space-y-6">
+                <!-- 스마트 계약 제어판 -->
+                <div class="bg-gray-800 p-6 rounded-xl shadow-lg">
+                    <h2 class="text-2xl font-semibold text-white mb-4 border-b border-gray-600 pb-2">스마트 계약</h2>
+                    <div class="space-y-4">
+                        <p class="text-gray-300">간단한 '숫자 저장' 계약입니다. 새로운 숫자를 입력하고 트랜잭션을 생성하여 블록체인에 기록하세요.</p>
+                        <div>
+                            <label for="contractValue" class="block text-sm font-medium text-gray-300 mb-1">현재 계약에 저장된 값:</label>
+                            <div id="currentValue" class="w-full p-3 bg-gray-900 rounded-lg text-2xl font-mono text-green-400 text-center">0</div>
+                        </div>
+                        <div>
+                            <label for="newValue" class="block text-sm font-medium text-gray-300 mb-1">새로운 값 입력 (숫자):</label>
+                            <input type="number" id="newValue" class="form-input w-full p-2 rounded-md focus:ring-2" placeholder="예: 42">
+                        </div>
+                        <button id="submitTx" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-200 shadow-md">
+                            트랜잭션 생성 및 채굴
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 블록체인 설정 -->
+                <div class="bg-gray-800 p-6 rounded-xl shadow-lg">
+                    <h2 class="text-2xl font-semibold text-white mb-4 border-b border-gray-600 pb-2">블록체인 설정</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <label for="difficulty" class="block text-sm font-medium text-gray-300">채굴 난이도 (Difficulty): <span id="difficultyValue">2</span></label>
+                            <input type="range" id="difficulty" min="1" max="5" value="2" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer">
+                            <p class="text-xs text-gray-500 mt-1">난이도가 높을수록 채굴 시간이 길어집니다. (앞에 붙는 0의 개수)</p>
+                        </div>
+                         <button id="validateChain" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-200">
+                            블록체인 무결성 검증
+                        </button>
+                    </div>
+                </div>
+                 <!-- 로그 창 -->
+                <div class="bg-gray-900 p-4 rounded-xl shadow-lg h-48">
+                    <h3 class="text-lg font-semibold text-white mb-2">활동 로그</h3>
+                    <div id="log" class="text-sm font-mono text-gray-400 overflow-y-auto h-32 pr-2"></div>
+                </div>
+            </div>
+
+            <!-- 우측: 블록체인 시각화 -->
+            <div class="lg:col-span-2">
+                <h2 class="text-2xl font-semibold text-white mb-4">블록체인 시각화</h2>
+                <div id="blockchain" class="space-y-4">
+                    <!-- 블록들이 여기에 동적으로 추가됩니다. -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class Block {
+            constructor(index, timestamp, data, previousHash = '') {
+                this.index = index;
+                this.timestamp = timestamp;
+                this.data = data;
+                this.previousHash = previousHash;
+                this.hash = this.calculateHash();
+                this.nonce = 0; // 채굴에 사용될 값
+            }
+
+            // 블록의 해시를 계산하는 함수
+            calculateHash() {
+                return CryptoJS.SHA256(this.index + this.previousHash + this.timestamp + JSON.stringify(this.data) + this.nonce).toString();
+            }
+
+            // 채굴 (Proof of Work)
+            mineBlock(difficulty) {
+                // 해시가 difficulty 만큼의 0으로 시작할 때까지 반복
+                while (this.hash.substring(0, difficulty) !== Array(difficulty + 1).join("0")) {
+                    this.nonce++;
+                    this.hash = this.calculateHash();
+                }
+            }
+        }
+
+        class Blockchain {
+            constructor() {
+                this.chain = [this.createGenesisBlock()];
+                this.difficulty = 2; // 채굴 난이도
+            }
+
+            // 첫 블록 (제네시스 블록) 생성
+            createGenesisBlock() {
+                return new Block(0, new Date().toISOString(), "Genesis Block", "0");
+            }
+
+            // 마지막 블록 가져오기
+            getLatestBlock() {
+                return this.chain[this.chain.length - 1];
+            }
+
+            // 새 블록 추가
+            addBlock(newBlock) {
+                newBlock.previousHash = this.getLatestBlock().hash;
+                addLog(`채굴 시작... (난이도: ${this.difficulty})`);
+                
+                // 채굴 프로세스를 비동기로 처리하여 UI 멈춤 방지
+                return new Promise((resolve) => {
+                    setTimeout(() => {
+                        newBlock.mineBlock(this.difficulty);
+                        this.chain.push(newBlock);
+                        addLog(`채굴 완료! 새 블록이 추가되었습니다.`);
+                        resolve();
+                    }, 50); // 약간의 딜레이를 주어 UI가 "채굴 시작" 메시지를 렌더링할 시간을 줌
+                });
+            }
+
+            // 블록체인의 무결성 검증
+            isChainValid() {
+                for (let i = 1; i < this.chain.length; i++) {
+                    const currentBlock = this.chain[i];
+                    const previousBlock = this.chain[i - 1];
+
+                    // 1. 현재 블록의 해시가 올바른지 확인
+                    if (currentBlock.hash !== currentBlock.calculateHash()) {
+                        return { valid: false, blockIndex: i };
+                    }
+
+                    // 2. 이전 블록의 해시와 연결되는지 확인
+                    if (currentBlock.previousHash !== previousBlock.hash) {
+                         return { valid: false, blockIndex: i };
+                    }
+                }
+                return { valid: true, blockIndex: -1 };
+            }
+        }
+
+        // --- UI 및 상호작용 로직 ---
+
+        const myBlockchain = new Blockchain();
+        let contractValue = 0;
+
+        const el = {
+            currentValue: document.getElementById('currentValue'),
+            newValue: document.getElementById('newValue'),
+            submitTx: document.getElementById('submitTx'),
+            blockchainDiv: document.getElementById('blockchain'),
+            logDiv: document.getElementById('log'),
+            difficultySlider: document.getElementById('difficulty'),
+            difficultyValue: document.getElementById('difficultyValue'),
+            validateChainBtn: document.getElementById('validateChain')
+        };
+        
+        // 로그 추가 함수
+        function addLog(message) {
+            const timestamp = new Date().toLocaleTimeString();
+            el.logDiv.innerHTML = `<p><span class="text-gray-500">${timestamp}:</span> ${message}</p>` + el.logDiv.innerHTML;
+        }
+        
+        // 블록체인 UI 렌더링 함수
+        function renderBlockchain() {
+            el.blockchainDiv.innerHTML = '';
+            myBlockchain.chain.forEach((block, index) => {
+                const blockElement = document.createElement('div');
+                blockElement.className = 'block-container p-4 bg-gray-800 border-2 rounded-lg transition-all duration-300';
+                blockElement.id = `block-${index}`;
+                
+                const dataString = JSON.stringify(block.data, null, 2);
+
+                blockElement.innerHTML = `
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xl font-bold text-white">블록 #${block.index}</span>
+                        <span class="text-xs font-mono text-gray-400">${block.timestamp}</span>
+                    </div>
+                    <div class="space-y-2 font-mono text-sm">
+                        <div>
+                            <label class="text-green-400">데이터:</label>
+                            <textarea class="data-input w-full p-2 mt-1 bg-gray-700 rounded h-24 text-gray-300" data-index="${index}">${dataString}</textarea>
+                        </div>
+                        <div>
+                            <label class="text-gray-400">Nonce:</label>
+                            <div class="text-gray-300 p-2 bg-gray-700 rounded truncate">${block.nonce}</div>
+                        </div>
+                        <div>
+                            <label class="text-red-400">이전 해시:</label>
+                            <div class="text-gray-300 p-2 bg-gray-700 rounded truncate">${block.previousHash}</div>
+                        </div>
+                        <div>
+                            <label class="text-blue-400">해시:</label>
+                            <div class="text-gray-300 p-2 bg-gray-700 rounded truncate">${block.hash}</div>
+                        </div>
+                    </div>
+                `;
+                el.blockchainDiv.appendChild(blockElement);
+            });
+            
+            // 데이터 수정 시 이벤트 리스너 추가 (위변조 시뮬레이션)
+            document.querySelectorAll('.data-input').forEach(input => {
+                input.addEventListener('input', (e) => {
+                    const blockIndex = e.target.getAttribute('data-index');
+                    try {
+                        myBlockchain.chain[blockIndex].data = JSON.parse(e.target.value);
+                        addLog(`경고: 블록 #${blockIndex}의 데이터가 수정되었습니다!`);
+                        validateAndUpdateUI();
+                    } catch(err) {
+                        // JSON 파싱 오류는 무시
+                    }
+                });
+            });
+
+            validateAndUpdateUI();
+        }
+
+        // 블록체인 유효성 검사 및 UI 업데이트
+        function validateAndUpdateUI() {
+            const validationResult = myBlockchain.isChainValid();
+            myBlockchain.chain.forEach((_, index) => {
+                const blockEl = document.getElementById(`block-${index}`);
+                if (blockEl) {
+                    blockEl.classList.remove('block-valid', 'block-invalid');
+                    if (validationResult.valid) {
+                        blockEl.classList.add('block-valid');
+                    } else {
+                        if (index >= validationResult.blockIndex) {
+                            blockEl.classList.add('block-invalid');
+                        } else {
+                             blockEl.classList.add('block-valid');
+                        }
+                    }
+                }
+            });
+
+            if (validationResult.valid) {
+                 addLog(`체인 무결성 검증: <span class="text-green-400">유효함</span>`);
+            } else {
+                 addLog(`체인 무결성 검증: <span class="text-red-400">손상됨! (블록 #${validationResult.blockIndex}부터)</span>`);
+            }
+        }
+        
+        // 트랜잭션 제출 이벤트
+        el.submitTx.addEventListener('click', async () => {
+            const value = el.newValue.value;
+            if (value === '' || isNaN(value)) {
+                addLog('<span class="text-yellow-400">유효한 숫자를 입력하세요.</span>');
+                return;
+            }
+
+            el.submitTx.disabled = true;
+            el.submitTx.innerText = '채굴 중...';
+
+            contractValue = parseInt(value);
+            const transactionData = {
+                from: "User",
+                to: "SmartContract",
+                action: "setValue",
+                value: contractValue
+            };
+            
+            const newBlock = new Block(myBlockchain.getLatestBlock().index + 1, new Date().toISOString(), transactionData);
+            
+            await myBlockchain.addBlock(newBlock);
+            
+            el.currentValue.innerText = contractValue;
+            el.newValue.value = '';
+            el.submitTx.disabled = false;
+            el.submitTx.innerText = '트랜잭션 생성 및 채굴';
+            
+            renderBlockchain();
+        });
+
+        // 난이도 변경 이벤트
+        el.difficultySlider.addEventListener('input', (e) => {
+            myBlockchain.difficulty = parseInt(e.target.value);
+            el.difficultyValue.innerText = e.target.value;
+        });
+
+        // 무결성 검증 버튼 이벤트
+        el.validateChainBtn.addEventListener('click', validateAndUpdateUI);
+        
+        // 초기화
+        window.onload = () => {
+            renderBlockchain();
+            addLog("시뮬레이터가 준비되었습니다.");
+        };
+
+    </script>
+</body>
+</html>
