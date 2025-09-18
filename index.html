@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI/데이터 분석 전문가 포트폴리오</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Noto Sans KR -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* 기본 폰트 설정 */
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #111827; /* 다크 모드 배경색 */
+            color: #d1d5db; /* 기본 텍스트 색상 */
+        }
+        /* 섹션 제목 스타일 */
+        .section-title {
+            @apply text-3xl font-bold text-white mb-8 text-center;
+        }
+        /* 카드 호버 효과 */
+        .card-hover {
+            @apply transition duration-300 ease-in-out transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-500/20;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-300">
+
+    <!-- Header / Navigation Bar -->
+    <header id="header" class="bg-gray-900/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="text-2xl font-bold text-white">Taehun Kim</a>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#about" class="hover:text-cyan-400 transition-colors">소개</a>
+                <a href="#skills" class="hover:text-cyan-400 transition-colors">기술 스택</a>
+                <a href="#projects" class="hover:text-cyan-400 transition-colors">프로젝트</a>
+                <a href="#contact" class="hover:text-cyan-400 transition-colors">연락처</a>
+            </nav>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                <i class="fas fa-bars fa-lg"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="#about" class="block py-2 px-6 text-center hover:bg-gray-800">소개</a>
+            <a href="#skills" class="block py-2 px-6 text-center hover:bg-gray-800">기술 스택</a>
+            <a href="#projects" class="block py-2 px-6 text-center hover:bg-gray-800">프로젝트</a>
+            <a href="#contact" class="block py-2 px-6 text-center hover:bg-gray-800">연락처</a>
+        </div>
+    </header>
+
+    <main class="pt-20">
+        <!-- Hero Section -->
+        <section id="home" class="h-screen flex items-center justify-center text-center bg-gray-900">
+            <div class="max-w-3xl mx-auto px-6">
+                <h1 class="text-4xl md:text-6xl font-bold text-white leading-tight mb-4">
+                    데이터로 법률의 미래를 조명합니다
+                </h1>
+                <p class="text-lg md:text-xl text-cyan-400 font-semibold mb-8">
+                    인공지능 · 데이터 분석 · 리걸테크 전문가
+                </p>
+                <p class="text-gray-400 mb-12 max-w-xl mx-auto">
+                    <!-- 여기에 본인에 대한 간략한 핵심 소개 문구를 입력하세요. -->
+                    기술과 법률의 교차점에서 혁신을 만들어가는 전문가입니다. 데이터 기반의 통찰력으로 복잡한 법률 문제를 해결하고 새로운 가치를 창출합니다.
+                </p>
+                <a href="#projects" class="bg-cyan-500 text-white font-bold py-3 px-8 rounded-full hover:bg-cyan-600 transition-all duration-300 transform hover:scale-105">
+                    프로젝트 보기
+                </a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 bg-gray-800/50">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">소개 (About Me)</h2>
+                <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-12">
+                    <div class="md:w-1/3 text-center">
+                        <img src="프로필사진.jpg" alt="프로필 사진" class="rounded-full w-48 h-48 md:w-64 md:h-64 mx-auto border-4 border-cyan-500 shadow-lg">
+                    </div>
+                    <div class="md:w-2/3">
+                        <p class="text-lg mb-4">
+                            <!-- 여기에 자기소개를 입력하세요. -->
+                            안녕하세요. 저는 다년간 인공지능과 데이터 분석 기술을 활용하여 리걸테크 분야의 혁신을 이끌어온 전문가입니다. Python, TensorFlow, SQL 등 다양한 기술을 다루며, 특히 자연어 처리(NLP) 기술을 통해 방대한 법률 문서를 분석하고 핵심 정보를 추출하는 프로젝트에 강점이 있습니다.
+                        </p>
+                        <p class="text-lg">
+                            데이터에 기반한 객관적인 근거를 통해 법률 서비스의 효율성을 높이고, 예측 분석을 통해 잠재적 법률 리스크를 관리하는 솔루션을 개발하는 것에 큰 보람을 느낍니다. 기술과 법률 지식을 융합하여 더 나은 세상을 만드는 데 기여하고 싶습니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">기술 스택 (Skills)</h2>
+                <div class="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                    <!-- 아래 목록을 본인의 기술 스택에 맞게 수정하세요. -->
+                    <div class="skill-card bg-gray-800 p-6 rounded-lg text-center card-hover">
+                        <i class="fab fa-python fa-3x text-cyan-400 mb-4"></i>
+                        <h3 class="text-white font-semibold text-lg">Python</h3>
+                    </div>
+                    <div class="skill-card bg-gray-800 p-6 rounded-lg text-center card-hover">
+                        <i class="fas fa-brain fa-3x text-cyan-400 mb-4"></i>
+                        <h3 class="text-white font-semibold text-lg">TensorFlow</h3>
+                    </div>
+                    <div class="skill-card bg-gray-800 p-6 rounded-lg text-center card-hover">
+                        <i class="fas fa-lightbulb fa-3x text-cyan-400 mb-4"></i>
+                        <h3 class="text-white font-semibold text-lg">PyTorch</h3>
+                    </div>
+                    <div class="skill-card bg-gray-800 p-6 rounded-lg text-center card-hover">
+                        <i class="fas fa-cogs fa-3x text-cyan-400 mb-4"></i>
+                        <h3 class="text-white font-semibold text-lg">Scikit-learn</h3>
+                    </div>
+                    <div class="skill-card bg-gray-800 p-6 rounded-lg text-center card-hover">
+                        <i class="fas fa-chart-bar fa-3x text-cyan-400 mb-4"></i>
+                        <h3 class="text-white font-semibold text-lg">Pandas</h3>
+                    </div>
+                    <div class="skill-card bg-gray-800 p-6 rounded-lg text-center card-hover">
+                        <i class="fas fa-database fa-3x text-cyan-400 mb-4"></i>
+                        <h3 class="text-white font-semibold text-lg">SQL</h3>
+                    </div>
+                     <div class="skill-card bg-gray-800 p-6 rounded-lg text-center card-hover">
+                        <i class="fas fa-cloud fa-3x text-cyan-400 mb-4"></i>
+                        <h3 class="text-white font-semibold text-lg">AWS / GCP</h3>
+                    </div>
+                    <div class="skill-card bg-gray-800 p-6 rounded-lg text-center card-hover">
+                        <i class="fab fa-docker fa-3x text-cyan-400 mb-4"></i>
+                        <h3 class="text-white font-semibold text-lg">Docker</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 bg-gray-800/50">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">프로젝트 (Projects)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <!-- 프로젝트 카드 1: 내용을 본인의 프로젝트에 맞게 수정하세요. -->
+                    <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg card-hover">
+                        <img src="https://placehold.co/600x400/1f2937/FFFFFF?text=Project+1" alt="프로젝트 1 이미지" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2">법률 문서 분석 및 요약 AI</h3>
+                            <p class="text-gray-400 mb-4">
+                                NLP 기술을 활용하여 대량의 판례, 계약서 등 법률 문서를 자동으로 분석하고 핵심 내용을 요약하는 시스템을 개발했습니다.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-cyan-900 text-cyan-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">Python</span>
+                                <span class="bg-cyan-900 text-cyan-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">NLP</span>
+                                <span class="bg-cyan-900 text-cyan-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">FastAPI</span>
+                            </div>
+                            <a href="#" class="text-cyan-400 hover:underline">자세히 보기 <i class="fas fa-arrow-right ml-1"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 프로젝트 카드 2: 내용을 본인의 프로젝트에 맞게 수정하세요. -->
+                    <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg card-hover">
+                        <img src="https://placehold.co/600x400/1f2937/FFFFFF?text=Project+2" alt="프로젝트 2 이미지" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2">소송 결과 예측 모델</h3>
+                            <p class="text-gray-400 mb-4">
+                                과거 소송 데이터를 분석하여 유사 사건의 승소/패소 확률을 예측하는 머신러닝 모델을 구축하여 변호사의 의사결정을 지원했습니다.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-cyan-900 text-cyan-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">Scikit-learn</span>
+                                <span class="bg-cyan-900 text-cyan-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">Pandas</span>
+                                <span class="bg-cyan-900 text-cyan-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">Tableau</span>
+                            </div>
+                            <a href="#" class="text-cyan-400 hover:underline">자세히 보기 <i class="fas fa-arrow-right ml-1"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 프로젝트 카드 3: 내용을 본인의 프로젝트에 맞게 수정하세요. -->
+                    <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg card-hover">
+                        <img src="https://placehold.co/600x400/1f2937/FFFFFF?text=Project+3" alt="프로젝트 3 이미지" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2">지능형 계약서 검토 시스템</h3>
+                            <p class="text-gray-400 mb-4">
+                                AI를 통해 계약서의 잠재적 위험 조항, 누락된 항목 등을 자동으로 탐지하고 사용자에게 경고하는 솔루션을 설계 및 개발했습니다.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-cyan-900 text-cyan-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">PyTorch</span>
+                                <span class="bg-cyan-900 text-cyan-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">PostgreSQL</span>
+                                <span class="bg-cyan-900 text-cyan-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">GCP</span>
+                            </div>
+                            <a href="#" class="text-cyan-400 hover:underline">자세히 보기 <i class="fas fa-arrow-right ml-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="section-title">연락처 (Contact)</h2>
+                <p class="max-w-2xl mx-auto text-lg mb-8">
+                    새로운 기회에 대해 항상 열려있습니다. 함께 협업하거나 궁금한 점이 있으시면 언제든지 연락주세요.
+                </p>
+                <div class="flex justify-center space-x-8 text-4xl">
+                    <!-- 본인의 이메일과 링크로 수정하세요. 'your-email@example.com' 부분 -->
+                    <a href="mailto:mailron35@gmail.com" class="hover:text-cyan-400 transition-colors" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <!-- 본인의 GitHub 프로필 주소로 수정하세요. '#' 부분 -->
+                    <a href="#" target="_blank" class="hover:text-cyan-400 transition-colors" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <!-- 본인의 LinkedIn 프로필 주소로 수정하세요. '#' 부분 -->
+                    <a href="#" target="_blank" class="hover:text-cyan-400 transition-colors" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800/50 py-6">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            &copy; 2024 Taehun Kim. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.getElementById('header');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLinks = document.querySelectorAll('nav a, #mobile-menu a');
+            const sections = document.querySelectorAll('section');
+
+            // 1. 헤더 배경색 스크롤에 따라 변경
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('shadow-lg');
+                } else {
+                    header.classList.remove('shadow-lg');
+                }
+            });
+            
+            // 2. 모바일 메뉴 토글
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // 3. 네비게이션 링크 클릭 시 부드럽게 스크롤 및 모바일 메뉴 닫기
+            navLinks.forEach(link => {
+                link.addEventListener('click', e => {
+                    // 모바일 메뉴가 열려있으면 닫기
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+
+            // 4. 스크롤에 따라 현재 섹션 네비게이션 링크 활성화 (선택적 기능)
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        document.querySelectorAll('nav a').forEach(link => {
+                            link.classList.remove('text-cyan-400');
+                            if (link.getAttribute('href') === `#${id}`) {
+                                link.classList.add('text-cyan-400');
+                            }
+                        });
+                    }
+                });
+            }, { rootMargin: "-30% 0px -70% 0px" });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
+
