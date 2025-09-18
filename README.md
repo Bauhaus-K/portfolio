@@ -6,4 +6,4 @@
 - AI, ML, DL
 
 ## 라이브 데모
-- portfolio Site
+- portfolio Site : https://bauhaus-k.github.io/portfolio/
