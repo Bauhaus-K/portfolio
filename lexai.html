@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LexAI | AI-블록체인 계약서 검토 서비스</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #4F46E5, #0891B2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .section-title {
+            @apply text-3xl md:text-4xl font-bold text-gray-800 mb-4 text-center;
+        }
+        .section-subtitle {
+            @apply text-lg text-gray-600 mb-12 text-center max-w-3xl mx-auto;
+        }
+        .feature-card {
+            @apply bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300;
+        }
+        .roadmap-item::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #4F46E5;
+            border: 3px solid white;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-700">
+
+    <!-- Header -->
+    <header x-data="{ open: false }" class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="#" class="text-2xl font-bold gradient-text">LexAI</a>
+                <nav class="hidden md:flex space-x-8 items-center">
+                    <a href="#introduction" class="text-gray-600 hover:text-indigo-600">소개</a>
+                    <a href="#features" class="text-gray-600 hover:text-indigo-600">핵심 가치</a>
+                    <a href="#how-it-works" class="text-gray-600 hover:text-indigo-600">서비스 흐름</a>
+                    <a href="#pricing" class="text-gray-600 hover:text-indigo-600">요금제</a>
+                    <a href="#roadmap" class="text-gray-600 hover:text-indigo-600">로드맵</a>
+                </nav>
+                <a href="#contact" class="hidden md:inline-block bg-indigo-600 text-white font-semibold px-5 py-2 rounded-lg hover:bg-indigo-700 transition-colors">문의하기</a>
+                <button @click="open = !open" class="md:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div x-show="open" @click.away="open = false" class="md:hidden mt-4">
+                <nav class="flex flex-col space-y-2">
+                    <a href="#introduction" class="text-gray-600 hover:text-indigo-600 py-2">소개</a>
+                    <a href="#features" class="text-gray-600 hover:text-indigo-600 py-2">핵심 가치</a>
+                    <a href="#how-it-works" class="text-gray-600 hover:text-indigo-600 py-2">서비스 흐름</a>
+                    <a href="#pricing" class="text-gray-600 hover:text-indigo-600 py-2">요금제</a>
+                    <a href="#roadmap" class="text-gray-600 hover:text-indigo-600 py-2">로드맵</a>
+                    <a href="#contact" class="bg-indigo-600 text-white font-semibold px-5 py-2 rounded-lg hover:bg-indigo-700 transition-colors text-center mt-2">문의하기</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+
+        <!-- Hero Section -->
+        <section class="relative bg-white pt-24 pb-32">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-gray-800 leading-tight mb-6">
+                    <span class="gradient-text">AI</span>와 <span class="gradient-text">블록체인</span>으로 완성하는<br>계약서 검토의 새로운 기준
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto mb-10">
+                    AI 기반 위험 탐지와 블록체인 기반 신뢰성 보장을 결합한 차세대 하이브리드 리걸테크 플랫폼, LexAI
+                </p>
+                <div class="flex justify-center space-x-4">
+                    <a href="#pricing" class="bg-indigo-600 text-white font-bold px-8 py-4 rounded-lg text-lg hover:bg-indigo-700 transition-all duration-300 transform hover:scale-105">요금제 확인하기</a>
+                    <a href="#how-it-works" class="bg-gray-200 text-gray-800 font-bold px-8 py-4 rounded-lg text-lg hover:bg-gray-300 transition-all duration-300 transform hover:scale-105">작동 방식 보기</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Introduction Section -->
+        <section id="introduction" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">왜 LexAI인가?</h2>
+                <p class="section-subtitle">
+                    중소기업의 현실적 니즈와 기술 발전의 기회를 결합하여, 기존 법률 시장의 문제를 해결합니다.
+                </p>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-xl shadow-md">
+                        <h3 class="text-xl font-bold text-indigo-600 mb-3">비용 부담 & 시간 소요</h3>
+                        <p>기존 로펌 대비 60% 이상 저렴한 비용으로, 3~7일 걸리던 검토를 24시간 내에 완료하여 비즈니스 속도를 높입니다.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-md">
+                        <h3 class="text-xl font-bold text-indigo-600 mb-3">품질의 불확실성</h3>
+                        <p>15만 건의 판례를 학습한 AI와 전문 변호사의 협업, 그리고 블록체인에 기록되는 투명한 이력으로 일관되고 객관적인 품질을 보장합니다.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-md">
+                        <h3 class="text-xl font-bold text-indigo-600 mb-3">디지털 시대의 신뢰</h3>
+                        <p>전자계약 시장의 급성장과 ESG 경영의 중요성이 증대되는 지금, 변조 불가능한 검증 증명서로 비대면 시대의 완전한 신뢰를 제공합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section (Core Values) -->
+        <section id="features" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">LexAI의 핵심 가치</h2>
+                <p class="section-subtitle">
+                    세 가지 핵심 가치를 통해 고객의 계약 리스크를 완벽하게 관리하고 비즈니스를 보호합니다.
+                </p>
+                <div class="grid md:grid-cols-3 gap-10">
+                    <div class="text-center">
+                        <div class="flex items-center justify-center h-20 w-20 bg-indigo-100 text-indigo-600 rounded-full mx-auto mb-5">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Guard (보호)</h3>
+                        <p>AI가 계약서의 위험 조항을 1차로 신속하게 탐지하여 법적 분쟁으로부터 고객의 비즈니스를 안전하게 보호합니다.</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="flex items-center justify-center h-20 w-20 bg-cyan-100 text-cyan-600 rounded-full mx-auto mb-5">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Chain (연결)</h3>
+                        <p>블록체인 기술을 통해 계약서의 업로드부터 검토 완료까지 모든 과정을 투명하게 연결하고, 위변조 불가능하게 기록합니다.</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="flex items-center justify-center h-20 w-20 bg-emerald-100 text-emerald-600 rounded-full mx-auto mb-5">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" /></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Trust (신뢰)</h3>
+                        <p>모든 검토 이력과 변호사 자격이 블록체인으로 증명되어, 파트너와 고객에게 완전한 신뢰성을 제공하는 기반이 됩니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How it Works Section -->
+        <section id="how-it-works" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">간편하고 강력한 서비스 흐름</h2>
+                <p class="section-subtitle">
+                    단 5단계의 직관적인 프로세스로 계약서 검토의 복잡성을 해결하고 비즈니스에만 집중하세요.
+                </p>
+                <div class="max-w-4xl mx-auto">
+                    <div class="relative grid gap-12">
+                        <!-- Step 1 -->
+                        <div class="flex items-start gap-6">
+                            <div class="flex items-center justify-center w-12 h-12 rounded-full bg-indigo-600 text-white font-bold text-xl flex-shrink-0">1</div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">스마트 업로드 & 자동 분류</h3>
+                                <p>계약서 파일을 업로드하면 AI가 유형을 자동 분류하고, 블록체인에 원본 해시값을 등록하여 진본성을 확보합니다. 예상 비용과 시간도 바로 확인할 수 있습니다.</p>
+                            </div>
+                        </div>
+                        <!-- Step 2 -->
+                        <div class="flex items-start gap-6">
+                            <div class="flex items-center justify-center w-12 h-12 rounded-full bg-indigo-600 text-white font-bold text-xl flex-shrink-0">2</div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">AI 기반 1차 위험 분석</h3>
+                                <p>다층 AI 분석 엔진이 불공정·누락·모순 조항을 탐지하고, 최신 법령 준수성을 검토하여 객관적인 위험도 점수를 산출합니다.</p>
+                            </div>
+                        </div>
+                        <!-- Step 3 -->
+                        <div class="flex items-start gap-6">
+                            <div class="flex items-center justify-center w-12 h-12 rounded-full bg-indigo-600 text-white font-bold text-xl flex-shrink-0">3</div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">블록체인 기반 변호사 매칭</h3>
+                                <p>계약 유형에 가장 적합한 전문 변호사를 추천합니다. 블록체인으로 검증된 자격, 과거 성과, 고객 평가를 투명하게 확인하고 직접 선택할 수 있습니다.</p>
+                            </div>
+                        </div>
+                        <!-- Step 4 -->
+                        <div class="flex items-start gap-6">
+                            <div class="flex items-center justify-center w-12 h-12 rounded-full bg-indigo-600 text-white font-bold text-xl flex-shrink-0">4</div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">협업 기반 2차 정밀 검토</h3>
+                                <p>AI 분석 결과를 바탕으로 변호사가 2차 정밀 검토를 진행합니다. 모든 검토 과정은 실시간으로 블록체인에 기록되며, 수정 권고안과 협상 전략을 제공합니다.</p>
+                            </div>
+                        </div>
+                        <!-- Step 5 -->
+                        <div class="flex items-start gap-6">
+                            <div class="flex items-center justify-center w-12 h-12 rounded-full bg-indigo-600 text-white font-bold text-xl flex-shrink-0">5</div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">결과 전달 & NFT 인증서</h3>
+                                <p>경영진용 요약본과 실무진용 상세 분석이 포함된 종합 리포트를 제공합니다. 블록체인 기반의 검토 완료 NFT 인증서로 검증 가능한 신뢰성을 확보하세요.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing" class="py-20 bg-white" x-data="{ plan: 'monthly' }">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">귀사의 비즈니스에 맞는 합리적인 요금제</h2>
+                <p class="section-subtitle">
+                    단발성 검토부터 정기적인 관리가 필요한 기업까지, 가장 효율적인 플랜을 선택하세요.
+                </p>
+                
+                <div class="flex justify-center mb-10">
+                    <div class="bg-gray-200 rounded-full p-1 flex">
+                        <button @click="plan = 'single'" :class="{'bg-indigo-600 text-white': plan === 'single', 'text-gray-600': plan !== 'single'}" class="px-6 py-2 rounded-full font-semibold transition-colors">건별 검토 서비스</button>
+                        <button @click="plan = 'monthly'" :class="{'bg-indigo-600 text-white': plan === 'monthly', 'text-gray-600': plan !== 'monthly'}" class="px-6 py-2 rounded-full font-semibold transition-colors">구독 패키지</button>
+                    </div>
+                </div>
+
+                <!-- Single Case Pricing -->
+                <div x-show="plan === 'single'" class="grid md:grid-cols-3 gap-8">
+                    <div class="border border-gray-200 rounded-xl p-8 text-center">
+                        <h3 class="text-2xl font-bold mb-2">표준형</h3>
+                        <p class="text-4xl font-extrabold mb-4">35만원<span class="text-lg font-medium text-gray-500">/건</span></p>
+                        <p class="text-gray-500 mb-6">20페이지 이하 일반 계약</p>
+                        <ul class="text-left space-y-3">
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>AI + 변호사 검토</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>블록체인 기록</li>
+                        </ul>
+                    </div>
+                    <div class="border-2 border-indigo-600 rounded-xl p-8 text-center relative">
+                        <span class="absolute top-0 -translate-y-1/2 bg-indigo-600 text-white text-sm font-bold px-3 py-1 rounded-full">POPULAR</span>
+                        <h3 class="text-2xl font-bold mb-2">복합형</h3>
+                        <p class="text-4xl font-extrabold mb-4">55만원<span class="text-lg font-medium text-gray-500">/건</span></p>
+                        <p class="text-gray-500 mb-6">복잡한 유형의 계약</p>
+                        <ul class="text-left space-y-3">
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>AI + 변호사 검토</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>블록체인 기록</li>
+                        </ul>
+                    </div>
+                    <div class="border border-gray-200 rounded-xl p-8 text-center">
+                        <h3 class="text-2xl font-bold mb-2">프리미엄</h3>
+                        <p class="text-4xl font-extrabold mb-4">80만원<span class="text-lg font-medium text-gray-500">/건</span></p>
+                        <p class="text-gray-500 mb-6">협상 전략 포함</p>
+                        <ul class="text-left space-y-3">
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>모든 기본 기능</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>NFT 인증서</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Monthly Subscription Pricing -->
+                <div x-show="plan === 'monthly'" class="grid md:grid-cols-3 gap-8">
+                    <div class="border border-gray-200 rounded-xl p-8 text-center flex flex-col">
+                        <h3 class="text-2xl font-bold mb-2">Starter</h3>
+                        <p class="text-4xl font-extrabold mb-4">180만원<span class="text-lg font-medium text-gray-500">/월</span></p>
+                        <p class="text-gray-500 mb-6">월 5건 검토 토큰 제공</p>
+                        <ul class="text-left space-y-3 mb-8 flex-grow">
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>기본 검토 서비스</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>기본 블록체인</li>
+                        </ul>
+                        <button class="w-full mt-auto bg-gray-200 text-gray-800 font-bold py-3 rounded-lg hover:bg-gray-300">선택하기</button>
+                    </div>
+                    <div class="border-2 border-indigo-600 rounded-xl p-8 text-center relative flex flex-col">
+                        <span class="absolute top-0 -translate-y-1/2 bg-indigo-600 text-white text-sm font-bold px-3 py-1 rounded-full">RECOMMENDED</span>
+                        <h3 class="text-2xl font-bold mb-2">Growth</h3>
+                        <p class="text-4xl font-extrabold mb-4">320만원<span class="text-lg font-medium text-gray-500">/월</span></p>
+                        <p class="text-gray-500 mb-6">월 10건 검토 토큰 제공</p>
+                        <ul class="text-left space-y-3 mb-8 flex-grow">
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>모든 Starter 기능</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>NFT 인증서 포함</li>
+                        </ul>
+                        <button class="w-full mt-auto bg-indigo-600 text-white font-bold py-3 rounded-lg hover:bg-indigo-700">선택하기</button>
+                    </div>
+                    <div class="border border-gray-200 rounded-xl p-8 text-center flex flex-col">
+                        <h3 class="text-2xl font-bold mb-2">Scale</h3>
+                        <p class="text-4xl font-extrabold mb-4">580만원<span class="text-lg font-medium text-gray-500">/월</span></p>
+                        <p class="text-gray-500 mb-6">월 20건 검토 토큰 제공</p>
+                        <ul class="text-left space-y-3 mb-8 flex-grow">
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>모든 Growth 기능</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>API 연동 지원</li>
+                        </ul>
+                        <button class="w-full mt-auto bg-gray-200 text-gray-800 font-bold py-3 rounded-lg hover:bg-gray-300">선택하기</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Roadmap Section -->
+        <section id="roadmap" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title">미래를 향한 로드맵</h2>
+                <p class="section-subtitle">
+                    LexAI는 계약 관리 생태계의 신뢰 인프라로 자리잡기 위해 단계적으로 발전하고 있습니다.
+                </p>
+                <div class="relative max-w-4xl mx-auto border-l-2 border-indigo-200 pl-10">
+                    <!-- Stage 1 -->
+                    <div class="mb-12 relative roadmap-item">
+                        <h3 class="text-xl font-bold text-indigo-700">1단계: 솔리드 파운데이션 (0-9개월)</h3>
+                        <p class="text-gray-600 mt-2">한국 특화 AI 모델 개발, 프라이빗 블록체인 구축, 핵심 웹 플랫폼 개발 및 파일럿 고객 20개사 확보.</p>
+                    </div>
+                    <!-- Stage 2 -->
+                    <div class="mb-12 relative roadmap-item">
+                        <h3 class="text-xl font-bold text-indigo-700">2단계: 시장 확장 (9-18개월)</h3>
+                        <p class="text-gray-600 mt-2">서비스 계약 유형 확대(5종+), 퍼블릭 블록체인 연동, NFT 인증 시스템 구축 및 활성 고객 300개사 달성.</p>
+                    </div>
+                    <!-- Stage 3 -->
+                    <div class="relative roadmap-item">
+                        <h3 class="text-xl font-bold text-indigo-700">3단계: 생태계 완성 (18-30개월)</h3>
+                        <p class="text-gray-600 mt-2">다국적 계약 AI 모델 개발, 크로스체인 기술 구현, DAO 거버넌스 도입 및 동남아시아 시장 진출.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                 <div class="max-w-3xl mx-auto text-center">
+                    <h2 class="section-title">지금 바로 시작하세요</h2>
+                    <p class="section-subtitle">
+                        LexAI가 어떻게 귀사의 계약 리스크를 줄이고 비즈니스 성장을 도울 수 있는지 궁금하신가요? 지금 바로 문의하여 전문가의 상담을 받아보세요.
+                    </p>
+                </div>
+                <div class="max-w-xl mx-auto bg-gray-50 p-8 rounded-xl shadow-lg">
+                    <form>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">이름</label>
+                                <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                            </div>
+                            <div>
+                                <label for="company" class="block text-sm font-medium text-gray-700 mb-1">회사명</label>
+                                <input type="text" id="company" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">이메일</label>
+                            <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">문의 내용</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+                        </div>
+                        <div>
+                            <button type="submit" class="w-full bg-indigo-600 text-white font-bold px-6 py-3 rounded-lg hover:bg-indigo-700 transition-colors">상담 요청하기</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold gradient-text">LexAI</h3>
+                    <p class="text-gray-400 mt-2">AI와 블록체인으로 완성하는 계약서 검토의 새로운 기준</p>
+                </div>
+                <div class="md:col-span-2">
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-8">
+                         <div>
+                            <h4 class="font-semibold">서비스</h4>
+                            <ul class="mt-4 space-y-2">
+                                <li><a href="#features" class="text-gray-400 hover:text-white">핵심 가치</a></li>
+                                <li><a href="#how-it-works" class="text-gray-400 hover:text-white">서비스 흐름</a></li>
+                                <li><a href="#pricing" class="text-gray-400 hover:text-white">요금제</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">회사</h4>
+                            <ul class="mt-4 space-y-2">
+                                <li><a href="#" class="text-gray-400 hover:text-white">회사 소개</a></li>
+                                <li><a href="#roadmap" class="text-gray-400 hover:text-white">로드맵</a></li>
+                                <li><a href="#" class="text-gray-400 hover:text-white">채용</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">자료</h4>
+                            <ul class="mt-4 space-y-2">
+                                <li><a href="#" class="text-gray-400 hover:text-white">블로그</a></li>
+                                <li><a href="#" class="text-gray-400 hover:text-white">백서</a></li>
+                                <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">문의</h4>
+                            <ul class="mt-4 space-y-2">
+                                <li><a href="#contact" class="text-gray-400 hover:text-white">파트너십</a></li>
+                                <li><a href="#" class="text-gray-400 hover:text-white">press@lexai.co</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-gray-700 pt-8 text-center text-gray-400 text-sm">
+                <p>&copy; 2024 LexAI Inc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
